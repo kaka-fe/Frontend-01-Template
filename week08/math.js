@@ -1,4 +1,4 @@
-// 参考同学们的
+// 参考同学们的 
 function isMatch(selector, element) {
     const regex = /(?:\s*>\s*)|(?:\s*~(?!=)\s*)|(?:\s*\|\|\s*)|(?:\s+)/g;
     const combinators = selector.match(regex) || [];
