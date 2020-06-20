@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 300px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #box .flex {
+            display: flex;
+            width: 100%;
+        }
+
+        #box .item {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            box-sizing: border-box;
+            border: 1px solid #fff;
+            background-color: green;
+            text-align: center;
+            font-size: 32px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        window.onload = function () {
+
+            let pattern = [
+                [1, 0, 0],
+                [0, 2, 0],
+                [0, 0, 0]
+            ];
+
+            let color = 1;
+            const willWIn = {1: [], 2: []};
+
+            const max = maxY = pattern.length - 1;
+            // const maxY = pattern[0].length - 1;
+
+            function show(array) {
+                let doc = document.getElementById('box');
+                doc.innerHTML = "";
+                for (let row = 0; row < pattern.length; row++) {
+                    let rowElement = document.createElement('div');
+                    rowElement.classList.add('flex');
+                    for (let col = 0; col < pattern[0].length; col++) {
+                        let item = document.createElement('div');
+                        item.classList.add('item');
+                        if (array[row][col] === 2) {
+                            item.textContent = '❌';
+                        } else if (array[row][col] === 1) {
+                            item.textContent = '⭕️';
+                        } else {
+                            item.addEventListener("click", () => move(row, col));
+                        }
+                        rowElement.appendChild(item);
+                    }
+                    doc.appendChild(rowElement);
+                }
+            }
+
+            show(pattern);
+
+            function move(x, y) {
+                console.log(x, y);
+                if (pattern[x][y] !== 0) return;
+                pattern[x][y] = color;
+                show(pattern);
+                const res = check(color, x, y);
+                color = 3 - color;
+            }
+
+            function check(color, x, y) {
+                const m = max / 2;
+                {
+                    if (x === m && y === m) {
+                        
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
